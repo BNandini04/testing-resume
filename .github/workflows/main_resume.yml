@@ -28,7 +28,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: .
+          path: |
+            .
+            !node_modules
+            !.git
+            !.github
 
   deploy:
     runs-on: ubuntu-latest
@@ -46,5 +50,3 @@ jobs:
           app-name: resume
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
           package: .
-
-          
